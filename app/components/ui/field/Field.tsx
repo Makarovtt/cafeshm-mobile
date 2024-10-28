@@ -31,7 +31,8 @@ const Field = <T extends Record<string, any>>({
 				<>
 					<View
 						className={cn(
-							'bg-white w-full border rounded-lg pb-4 pt-2.5 px-4 my-1.5',
+							'bg-white w-full border rounded-lg pb-4 pt-2.5 my-1.5',
+							'flex flex-row items-center gap-x-3 ml-0',
 							error ? 'border-red-500' : 'border-gray-400',
 							className
 						)}
@@ -42,26 +43,29 @@ const Field = <T extends Record<string, any>>({
 						}
 					>
 						{isPhoneType ? (
-							<TextInputMask
-								type={'cel-phone'}
-								options={{
-									maskType: 'BRL', //for international set it -&amp;nbsp;INTERNATIONAL type masking
-									withDDD: true,
-									dddMask: '(999) 999 99-99' //this is a your define formatting you use according to your requirment
-								}}
-								maxLength={15} //set length according to your input requirment
-								className='text-black text-base'
-								placeholderTextColor='#6A6A6A'
-								onChangeText={onChange}
-								onBlur={onBlur}
-								defaultValue={defaultValue}
-								value={(value || '').toString()}
-								autoCapitalize={'none'}
-								autoCorrect={false}
-								returnKeyType={'next'}
-								keyboardType={'number-pad'}
-								{...rest}
-							/>
+							<>
+								<Text className='text-base'>+7</Text>
+								<TextInputMask
+									type={'cel-phone'}
+									options={{
+										maskType: 'BRL', //for international set it -&amp;nbsp;INTERNATIONAL type masking
+										withDDD: true,
+										dddMask: '(999) 999 99-99' //this is a your define formatting you use according to your requirment
+									}}
+									maxLength={15} //set length according to your input requirment
+									className='text-black text-base'
+									placeholderTextColor='#6A6A6A'
+									onChangeText={onChange}
+									onBlur={onBlur}
+									defaultValue={defaultValue}
+									value={(value || '').toString()}
+									autoCapitalize={'none'}
+									autoCorrect={false}
+									returnKeyType={'next'}
+									keyboardType={'number-pad'}
+									{...rest}
+								/>
+							</>
 						) : (
 							<TextInput
 								{...rest}
@@ -69,7 +73,7 @@ const Field = <T extends Record<string, any>>({
 								onBlur={onBlur}
 								defaultValue={defaultValue}
 								value={(value || '').toString()}
-								className='text-black text-base'
+								className='text-black text-base max-w-[250px] mx-auto'
 								placeholderTextColor='#6A6A6A'
 							/>
 						)}

@@ -2,8 +2,14 @@ import { FC, useState } from 'react'
 import { Pressable, Text, Touchable, View } from 'react-native'
 import { RadioButton } from 'react-native-paper'
 
-const SelfDelivery: FC = () => {
-	const [selectedValue, setSelectedValue] = useState('option1')
+import { TAddressCafe } from '../../order-page.interface'
+
+interface IProps {
+	addressCafe: TAddressCafe
+	setAddressCafe: (arg0: TAddressCafe) => void
+}
+const SelfDelivery: FC<IProps> = ({ addressCafe, setAddressCafe }) => {
+	// const [selectedValue, setSelectedValue] = useState('tatisheva')
 	return (
 		<View>
 			<Text className='mb-3'>Астрахань</Text>
@@ -12,17 +18,17 @@ const SelfDelivery: FC = () => {
 			<View>
 				<View>
 					<Pressable
-						onPress={() => setSelectedValue('option1')}
+						onPress={() => setAddressCafe('tatisheva')}
 						className='flex-row items-center'
 					>
 						<RadioButton.Android
-							value='option1'
+							value='tatisheva'
 							status={
-								selectedValue === 'option1'
+								addressCafe === 'tatisheva'
 									? 'checked'
 									: 'unchecked'
 							}
-							onPress={() => setSelectedValue('option1')}
+							onPress={() => setAddressCafe('tatisheva')}
 							color='#007BFF'
 						/>
 						<Text>ул. Татищева, 43А</Text>
@@ -31,17 +37,17 @@ const SelfDelivery: FC = () => {
 
 				<View>
 					<Pressable
-						onPress={() => setSelectedValue('option2')}
+						onPress={() => setAddressCafe('perovskoy')}
 						className='flex-row items-center'
 					>
 						<RadioButton.Android
-							value='option2'
+							value='perovskoy'
 							status={
-								selectedValue === 'option2'
+								addressCafe === 'perovskoy'
 									? 'checked'
 									: 'unchecked'
 							}
-							onPress={() => setSelectedValue('option2')}
+							onPress={() => setAddressCafe('perovskoy')}
 							color='#007BFF'
 						/>
 						<Text>ул. Софьи Перовской, 98ж/2</Text>
@@ -50,17 +56,17 @@ const SelfDelivery: FC = () => {
 
 				<View>
 					<Pressable
-						onPress={() => setSelectedValue('option3')}
+						onPress={() => setAddressCafe('brestskaya')}
 						className='flex-row items-center'
 					>
 						<RadioButton.Android
-							value='option3'
+							value='brestskaya'
 							status={
-								selectedValue === 'option3'
+								addressCafe === 'brestskaya'
 									? 'checked'
 									: 'unchecked'
 							}
-							onPress={() => setSelectedValue('option3')}
+							onPress={() => setAddressCafe('brestskaya')}
 							color='#007BFF'
 						/>
 						<Text>ул. Брестская, 26б</Text>
@@ -69,17 +75,17 @@ const SelfDelivery: FC = () => {
 
 				<View>
 					<Pressable
-						onPress={() => setSelectedValue('option4')}
+						onPress={() => setAddressCafe('nikolaevskoe')}
 						className='flex-row items-center'
 					>
 						<RadioButton.Android
-							value='option4'
+							value='nikolaevskoe'
 							status={
-								selectedValue === 'option4'
+								addressCafe === 'nikolaevskoe'
 									? 'checked'
 									: 'unchecked'
 							}
-							onPress={() => setSelectedValue('option4')}
+							onPress={() => setAddressCafe('nikolaevskoe')}
 							color='#007BFF'
 						/>
 						<Text>ул. Николаевское шоссе, 1г</Text>

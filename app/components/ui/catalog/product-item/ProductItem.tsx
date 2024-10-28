@@ -37,6 +37,9 @@ const ProductItem: FC<Props> = ({ product }) => {
 					className='w-full h-full object-cover'
 				/>
 			</Pressable>
+			<Text className='font-semibold text-base text-wrap'>
+				{product.name}
+			</Text>
 			<ProductInfo product={product} />
 		</View>
 	)

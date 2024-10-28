@@ -32,6 +32,16 @@ export const useAuthMutations = (reset: UseFormReset<IAuthFormData>) => {
 		}
 	})
 
+	const { mutate: deleteUserSync, isPending: isDeleteLoading } = useMutation({
+		mutationKey: ['delete'],
+		mutationFn: ({ deleteId }: { deleteId: string }) =>
+			AuthService.delete(deleteId),
+		onSuccess(data) {
+			reset()
+			setUser(null)
+		}
+	})
+
 	// const { mutate: nameSync, isPending: isNameLoading } = useMutation({
 	// 	mutationKey: ['name'],
 	// 	mutationFn: ({ name, id }: { name: string; id: string }) =>
@@ -46,7 +56,8 @@ export const useAuthMutations = (reset: UseFormReset<IAuthFormData>) => {
 			// nameSync,
 			loginSync,
 			registerSync,
-			isLoading: isLoginLoading || isRegisterLoading
+			deleteUserSync,
+			isLoading: isLoginLoading || isRegisterLoading || isDeleteLoading
 		}),
 		[isLoginLoading, isRegisterLoading]
 	)

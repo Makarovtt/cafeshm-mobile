@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { EnumAsyncStorage, IAuthResponse } from '@/types/auth.interface'
 
-import { getAuthUrl } from '@/config/api.config'
+import { deleteDataUserUrl, getAuthUrl } from '@/config/api.config'
 
 import { request } from '../api/request.api'
 
@@ -17,6 +17,16 @@ export const AuthService = {
 		})
 
 		if (response.accessToken) await saveToStorage(response)
+
+		return response
+	},
+
+	async delete(deleteId: string) {
+		console.log(deleteDataUserUrl(`/${deleteId}`))
+		const response = await request({
+			url: deleteDataUserUrl(`/${deleteId}`),
+			method: 'DELETE'
+		})
 
 		return response
 	},

@@ -4,11 +4,17 @@ import { Text, View } from 'react-native'
 import Heading from '@/components/ui/Heading'
 import ButtonForm from '@/components/ui/button/ButtonForm'
 
+import { TPayMethod } from '../../order-page.interface'
+
 import PayCash from './PayCash'
 import PayOnline from './PayOnline'
 
-const PayMethod: FC = () => {
-	const [isTabActive, serIsTabActive] = useState<string>('first')
+interface IProps {
+	payMethod: TPayMethod
+	setPayMethod: (arg0: TPayMethod) => void
+}
+
+const PayMethod: FC<IProps> = ({ payMethod, setPayMethod }) => {
 	return (
 		<View>
 			<Heading>Способ оплаты</Heading>
@@ -18,20 +24,21 @@ const PayMethod: FC = () => {
 			>
 				<ButtonForm
 					className='mr-3'
-					activeTab={isTabActive === 'first' ? true : false}
-					onPress={() => serIsTabActive('first')}
-				>
-					Онлайн
-				</ButtonForm>
-				<ButtonForm
-					activeTab={isTabActive === 'second' ? true : false}
-					onPress={() => serIsTabActive('second')}
+					activeTab={payMethod === 'cash' ? 'activeBtn' : 'waitBtn'}
+					onPress={() => setPayMethod('cash')}
 				>
 					Наличными
 				</ButtonForm>
+				<ButtonForm
+					activeTab={'defaultBtn'}
+					onPress={() => setPayMethod('card')}
+					disabled={true}
+				>
+					Онлайн
+				</ButtonForm>
 			</View>
 			<View className='bg-white rounded-lg border border-gray-200 shadow-lg p-3 my-4'>
-				{isTabActive === 'first' ? <PayOnline /> : <PayCash />}
+				{payMethod === 'cash' ? <PayCash /> : <PayOnline />}
 			</View>
 		</View>
 	)

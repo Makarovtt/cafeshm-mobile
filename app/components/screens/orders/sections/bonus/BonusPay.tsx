@@ -6,11 +6,11 @@ import Heading from '@/components/ui/Heading'
 import ButtonForm from '@/components/ui/button/ButtonForm'
 
 interface Iprops {
-	isTabActive: string
-	serIsTabActive: (arg0: string) => void
+	bonus: boolean
+	setBonus: (arg0: boolean) => void
 }
 
-const BonusPay: FC<Iprops> = ({ isTabActive, serIsTabActive }) => {
+const BonusPay: FC<Iprops> = ({ bonus, setBonus }) => {
 	return (
 		<View>
 			<Heading>Бонусы</Heading>
@@ -20,14 +20,14 @@ const BonusPay: FC<Iprops> = ({ isTabActive, serIsTabActive }) => {
 			>
 				<ButtonForm
 					className='mr-3'
-					activeTab={isTabActive === 'first' ? true : false}
-					onPress={() => serIsTabActive('first')}
+					activeTab={!bonus ? 'activeBtn' : 'waitBtn'}
+					onPress={() => setBonus(false)}
 				>
 					Не списывать
 				</ButtonForm>
 				<ButtonForm
-					activeTab={isTabActive === 'second' ? true : false}
-					onPress={() => serIsTabActive('second')}
+					activeTab={bonus ? 'activeBtn' : 'waitBtn'}
+					onPress={() => setBonus(true)}
 				>
 					Списать 200
 				</ButtonForm>

@@ -8,7 +8,7 @@ import { IAuthFormData } from '@/types/auth.interface'
 import { validEmail } from './email.regex'
 import { validPhone } from './phone.regex'
 
-interface IAuthFields {
+interface IAuthFields { 
 	control: Control<IAuthFormData>
 }
 const AuthFields: FC<IAuthFields> = ({ control }) => {

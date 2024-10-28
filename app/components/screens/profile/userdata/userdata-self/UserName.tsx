@@ -3,6 +3,8 @@ import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Pressable, Text, View } from 'react-native'
 
+import { MyModal } from '@/components/ui/modal/MyModal'
+
 import { IUserDataInput } from '@/types/auth.interface'
 
 import ProfileModal from '../../ProfileModal'
@@ -48,7 +50,7 @@ const UserName: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 						profile.name
 					) : (
 						<Text className='text-red-400 font-light'>
-							Неизвестно
+							Укажите Ваше имя
 						</Text>
 					)}
 				</Text>
@@ -60,19 +62,19 @@ const UserName: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 					<Feather name='edit-3' size={18} color='gray' />
 				</Pressable>
 			</View>
-
-			<ProfileModal
-				autoCapitalize='words'
-				profile={profile}
-				isModalVisible={isModalVisible}
-				onModalClose={onModalClose}
-				objChange={objChange}
-				setValue={setValue}
-				register={register}
-				control={control}
-				handleSubmit={handleSubmit}
-				onSubmit={onSubmit}
-			/>
+			<MyModal isModal={isModalVisible} onClose={onModalClose}>
+				<ProfileModal
+					autoCapitalize='words'
+					profile={profile}
+					onClose={onModalClose}
+					objChange={objChange}
+					setValue={setValue}
+					register={register}
+					control={control}
+					handleSubmit={handleSubmit}
+					onSubmit={onSubmit}
+				/>
+			</MyModal>
 		</>
 	)
 }

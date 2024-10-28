@@ -22,7 +22,8 @@ export const cartSlice = createSlice({
 			if (!isExist)
 				state.items.push({
 					...action.payload,
-					id: state.items.length.toString(),
+					// id: state.items.length.toString(),
+					id: action.payload.product.id,
 					quantity: action.payload.product.minportion,
 					description: action.payload.product.description
 				})

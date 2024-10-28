@@ -1,3 +1,4 @@
+import AboutCompany from '@/components/screens/about-company/AboutCompany'
 import ActionItem from '@/components/screens/actions/ActionItem'
 import Actions from '@/components/screens/actions/Actions'
 import Auth from '@/components/screens/auth/Auth'
@@ -14,6 +15,7 @@ import Search from '@/components/screens/search/Search'
 import Thanks from '@/components/screens/thanks/Thanks'
 
 import { Iroute } from './navigation.types'
+import Information from '@/components/screens/information/Information'
 
 export const routes: Iroute[] = [
 	{
@@ -67,5 +69,13 @@ export const routes: Iroute[] = [
 	{
 		name: 'BonusDescription',
 		component: BonusDescription
+	},
+	{
+		name: 'AboutCompany',
+		component: AboutCompany
+	},
+	{
+		name: 'Information',
+		component: Information
 	}
 ]

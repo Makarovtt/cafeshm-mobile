@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Pressable, Text, View } from 'react-native'
 
 import { validPhone } from '@/components/screens/auth/phone.regex'
+import { MyModal } from '@/components/ui/modal/MyModal'
 
 import { IUserDataInput } from '@/types/auth.interface'
 
@@ -47,7 +48,7 @@ const UserPhone: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 					{isRefreshLoding
 						? 'Загрузка'
 						: profile?.phone
-							? profile.phone
+							? `+7 ${profile.phone}`
 							: 'Неизвестно'}
 				</Text>
 				<Pressable
@@ -58,30 +59,30 @@ const UserPhone: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 					<Feather name='edit-3' size={18} color='gray' />
 				</Pressable>
 			</View>
-
-			<ProfileModal
-				profile={profile}
-				isModalVisible={isModalVisible}
-				onModalClose={onModalClose}
-				objChange={objChange}
-				setValue={setValue}
-				register={register}
-				rules={{
-					required: 'Поле обязательное',
-					pattern: {
-						value: validPhone,
-						message: 'Введите валидный Телефон'
-					},
-					minLength: {
-						value: 15,
-						message: 'Введите валидный телефон'
-					}
-				}}
-				keyboardType='numeric'
-				control={control}
-				handleSubmit={handleSubmit}
-				onSubmit={onSubmit}
-			/>
+			<MyModal isModal={isModalVisible} onClose={onModalClose}>
+				<ProfileModal
+					profile={profile}
+					onClose={onModalClose}
+					objChange={objChange}
+					setValue={setValue}
+					register={register}
+					rules={{
+						required: 'Поле обязательное',
+						pattern: {
+							value: validPhone,
+							message: 'Введите валидный Телефон'
+						},
+						minLength: {
+							value: 15,
+							message: 'Введите валидный телефон'
+						}
+					}}
+					keyboardType='numeric'
+					control={control}
+					handleSubmit={handleSubmit}
+					onSubmit={onSubmit}
+				/>
+			</MyModal>
 		</>
 	)
 }

@@ -1,19 +1,9 @@
-import { ComponentElement, FC, useRef } from 'react'
-import {
-	Pressable,
-	SafeAreaView,
-	ScrollView,
-	StyleSheet,
-	Text,
-	TextInput,
-	View
-} from 'react-native'
+import { FC } from 'react'
+import { ScrollView, Text, View } from 'react-native'
 
 import { IProduct } from '@/types/product.interface'
 
-import Heading from '../Heading'
-
-import { IBlockProducts, ICatalog, ICatalogSearch } from './catalog.interface'
+import { ICatalogSearch } from './catalog.interface'
 import ProductItem from './product-item/ProductItem'
 
 const CatalogSearch: FC<ICatalogSearch> = ({ title, products }) => {
@@ -25,7 +15,7 @@ const CatalogSearch: FC<ICatalogSearch> = ({ title, products }) => {
 			{/* {title && <Heading>{title}</Heading>} */}
 			<View
 				style={{ gap: 10 }}
-				className='flex flex-row justify-left flex-wrap mt-2'
+				className='flex-row justify-start w-full flex-wrap mt-2'
 			>
 				{products ? (
 					products.map((item: IProduct) => {

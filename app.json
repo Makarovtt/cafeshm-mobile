@@ -1,29 +1,45 @@
 {
-	"expo": {
-		"name": "Шашлычный мир",
-		"slug": "cafeshm",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./app/assets/icon.png",
-		"userInterfaceStyle": "light",
-		"splash": {
-			"image": "./app/assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"package": "cafeshm.delivery",
-			"adaptiveIcon": {
-				"foregroundImage": "./app/assets/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
-			}
-		},
-		"web": {
-			"favicon": "./app/assets/favicon.png"
-		},
-		"plugins": ["expo-secure-store"]
-	}
+  "expo": {
+    "name": "Шашлычный мир",
+    "slug": "cafeshm",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "cafeshm.delivery"
+    },
+    "android": {
+      "package": "cafeshm.delivery",
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./app/assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c99c173f-2949-455e-af5f-c35b3688972e"
+      }
+    }
+  }
 }

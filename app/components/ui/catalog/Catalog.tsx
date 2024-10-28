@@ -4,6 +4,7 @@ import HorizontalScrollMenu, {
 import cn from 'clsx'
 import { FC, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { red400 } from 'react-native-paper/lib/typescript/styles/themes/v2/colors'
 
 import { ISearchFormData } from '@/components/screens/search/search.interface'
 import { useSearch } from '@/components/screens/search/useSearch'
@@ -94,7 +95,8 @@ const Catalog: FC<ICatalog> = ({ title, sectionProducts }) => {
 				// 	})}
 				// </ScrollView>
 				<View
-					className='flex-1 justify-center items-center overflow-visible bg-white py-2  border-b border-b-gray-300'
+					className='flex-1 justify-center items-center overflow-visible bg-white py-2  border-b border-b-gray-300
+								h-14'
 					style={{
 						shadowColor: '#171717',
 						shadowOffset: { width: -2, height: 4 },
@@ -107,6 +109,8 @@ const Catalog: FC<ICatalog> = ({ title, sectionProducts }) => {
 						onPress={onPress}
 						selected={selectedIndex}
 						buttonStyle={styles.buttonStyle}
+						activeTextColor='#fff'
+						activeBackgroundColor='#CB4444'
 						itemWidth={80}
 						scrollAreaStyle={{
 							height: 50
@@ -114,9 +118,19 @@ const Catalog: FC<ICatalog> = ({ title, sectionProducts }) => {
 					/>
 				</View>
 			)}
+			<View className='my-[10px] px-3'>
+				<View className='mt-0 mx-3 w-full'>
+					<Field<ISearchFormData>
+						placeholder='Поиск'
+						control={control}
+						name='searchTerm'
+						keyboardType='web-search'
+					/>
+				</View>
+			</View>
 
 			{!!searchTerm ? (
-				<View className='mt-2'>
+				<View className='mt-2 px-3 mb-10'>
 					{isLoading ? (
 						<Loader />
 					) : (
@@ -125,14 +139,6 @@ const Catalog: FC<ICatalog> = ({ title, sectionProducts }) => {
 				</View>
 			) : sectionProducts?.length ? (
 				<View className='my-[10px] px-3 mb-10'>
-					<View className='mt-0 mx-3'>
-						<Field<ISearchFormData>
-							placeholder='Поиск'
-							control={control}
-							name='searchTerm'
-							keyboardType='web-search'
-						/>
-					</View>
 					{sectionProducts.map((section: IBlockProducts, index) => {
 						return (
 							<View
@@ -149,12 +155,14 @@ const Catalog: FC<ICatalog> = ({ title, sectionProducts }) => {
 								>
 									{section.blockProducts.map(
 										(item: IProduct) => {
-											return (
-												<ProductItem
-													key={item.id}
-													product={item}
-												/>
-											)
+											if (item.show === 1) {
+												return (
+													<ProductItem
+														key={item.id}
+														product={item}
+													/>
+												)
+											}
 										}
 									)}
 								</View>
@@ -179,7 +187,8 @@ const styles = StyleSheet.create({
 	},
 	buttonStyle: {
 		margin: 0,
-		borderWidth: 0
+		borderWidth: 0,
+		backgroundColor: '#fff'
 	},
 	text: {
 		fontSize: 30,

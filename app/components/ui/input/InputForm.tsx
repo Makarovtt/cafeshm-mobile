@@ -12,7 +12,7 @@ const InputForm: FC<PropsWithChildren<IinputForm>> = ({
 	return (
 		<TextInput
 			className={cn(
-				'bg-white mt-3 border py-0 transition rounded-xl',
+				'bg-white border py-0 transition rounded-xl !h-[35px]',
 				isActive ? 'border-sky-500' : 'border-gray-200',
 				className
 			)}

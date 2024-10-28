@@ -1,6 +1,7 @@
 import cn from 'clsx'
 import { FC, PropsWithChildren } from 'react'
 import { Pressable, Text, View } from 'react-native'
+import { Button, ButtonProps } from 'react-native-paper'
 
 import { useCart } from '@/hooks/useCart'
 
@@ -11,38 +12,21 @@ import { IButton } from './button.interface'
 interface Props {
 	product?: IProduct
 }
-const Button: FC<PropsWithChildren<IButton> & Props> = ({
-	product,
-	children,
-	disabled,
-	className,
-	...rest
-}) => {
+const MyButton: FC<ButtonProps & Props> = ({ product, children, ...rest }) => {
 	const { items } = useCart()
 
-	const currentElement = items.find(
-		cartItem => cartItem.product.id === product?.id
-	)
 	return (
-		<Pressable
-			className={cn(
-				'self-center mt-3.5  w-full py-3 font-light rounded-lg',
-				currentElement ? 'bg-[#28a844]' : 'bg-gray-300',
-				className
-			)}
-			disabled={disabled ? true : false}
+		<Button
+			className={cn('text-center font-medium text-lg')}
+			mode='contained'
+			buttonColor='#239631'
+			style={{ borderRadius: 10 }}
 			{...rest}
 		>
-			<Text
-				className={cn(
-					'text-center font-medium text-lg',
-					currentElement ? 'text-white ' : 'text-gray-600 '
-				)}
-			>
-				{children}
-			</Text>
-		</Pressable>
+			{children}
+		</Button>
+		// </Pressable>
 	)
 }
 
-export default Button
+export default MyButton
