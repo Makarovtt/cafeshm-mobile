@@ -27,7 +27,7 @@ const Auth: FC = () => {
 
 	return (
 		<View className='mx-2 items-center justify-center h-full'>
-			<View className='w-9/12'>
+			<View className='w-9/12 mx-auto'>
 				<Text className='text-center text-black text-3xl font-medium mb-8'>
 					{isReg ? 'Регистрация' : 'Войти'}
 				</Text>
@@ -36,7 +36,10 @@ const Auth: FC = () => {
 				) : (
 					<>
 						<AuthFields control={control} />
-						<Button onPress={handleSubmit(onSubmit)}>
+						<Button
+							onPress={handleSubmit(onSubmit)}
+							className='mt-4'
+						>
 							{isReg ? 'Регистрация' : 'Войти'}
 						</Button>
 

@@ -10,20 +10,25 @@ const ButtonForm: FC<PropsWithChildren<IButton>> = ({
 	className,
 	...rest
 }) => {
-	const activeBtn = 'bg-[#ffffff] border border-gray-300 text-gray-700'
-	const defaultBtn = 'bg-[#c4c4c4] border border-gray-300 text-gray-700'
-	const deleteBtn = 'bg-[#d73e3e] border border-red-200 text-white'
-	const premiertBtn = 'bg-[#0d8abc] border border-red-200 text-white'
+	const selectBtn = (btn: any) => {
+		const select = new Map([
+			['waitBtn', 'bg-[#ffffff] border border-gray-300 text-gray-700'],
+			['defaultBtn', 'bg-[#c4c4c4] border border-gray-300 text-gray-700'],
+			['deleteBtn', 'bg-[#d73e3e] border border-red-200 text-white'],
+			[
+				'activeBtn',
+				'bg-[#55b3d8] border border-sky-500 text-white font-semibold'
+			]
+		])
+		return select.get(btn)
+	}
 	return (
 		<Pressable className={className} {...rest}>
 			<Text
 				className={cn(
 					' text-center text-base rounded-lg self-center font-light ',
-					'px-3 my-2 py-1 border-none',
-					activeTab === 'activeBtn' ? activeBtn : null,
-					activeTab === 'defaultBtn' ? defaultBtn : null,
-					activeTab === 'deleteBtn' ? deleteBtn : null,
-					activeTab === 'premiertBtn' ? premiertBtn : null
+					'px-3 my-2 py-1',
+					selectBtn(activeTab)
 				)}
 				style={{ borderWidth: 0 }}
 			>

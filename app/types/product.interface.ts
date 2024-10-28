@@ -9,6 +9,9 @@ export interface IProduct {
 	unit: string
 	minportion: number
 	price: number
+	sort?: number
+	show?: number
+	recommended?: number
 	image: string
 	createdAt: string
 	category: Icategory

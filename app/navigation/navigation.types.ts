@@ -19,6 +19,8 @@ export type TypeRootStackParamList = {
 	Product: {
 		slug: string
 	}
+	AboutCompany: undefined
+	Information: undefined
 }
 
 export interface Iroute {

@@ -1,67 +1,98 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Text, View } from 'react-native'
 import { Checkbox } from 'react-native-paper'
 
 import InputForm from '@/components/ui/input/InputForm'
 
-interface Iaddress {
-	street: string
-	home: string
-	room: string
-	podyezd: string
-	floor: string
+import { IAddressDelivery } from '../../order-page.interface'
+
+interface IProps {
+	addressDelivery: IAddressDelivery
+	setAddressDelivery: (arg0: IAddressDelivery) => void
 }
 
-const DeliveryNote: FC = () => {
-	const [text, setText] = useState({} as Iaddress)
-	const [comment, setComment] = useState('')
-	const [checked, setChecked] = useState(false)
+const DeliveryNote: FC<IProps> = ({ addressDelivery, setAddressDelivery }) => {
 	return (
 		<View>
 			<Text>Укажите адрес доставки</Text>
 
-			<View>
+			<View className='my-1'>
 				<InputForm
 					placeholder='Улица'
-					value={text.street}
-					onChangeText={value => setText({ ...text, street: value })}
+					value={addressDelivery.street}
+					onChangeText={value =>
+						setAddressDelivery({
+							...addressDelivery,
+							street: value
+						})
+					}
 				/>
 			</View>
-			<View>
+			<View className='my-1'>
 				<InputForm
 					placeholder='Номер дома'
-					value={text.home}
-					onChangeText={value => setText({ ...text, home: value })}
+					value={addressDelivery.home}
+					onChangeText={value =>
+						setAddressDelivery({ ...addressDelivery, home: value })
+					}
 				/>
 			</View>
 			<View className='w-[200px]'>
 				<Checkbox.Item
-					status={checked ? 'checked' : 'unchecked'}
+					status={
+						addressDelivery.privateHome ? 'checked' : 'unchecked'
+					}
 					onPress={() => {
-						setChecked(!checked)
+						const now = !addressDelivery.privateHome
+						setAddressDelivery({
+							...addressDelivery,
+							privateHome: now
+						})
 					}}
 					position='leading'
+					uncheckedColor='#999'
 					label='Частный дом'
-					color='#6b90e5'
+					labelStyle={{
+						color: addressDelivery.privateHome ? '#555' : '#999',
+						textAlign: 'left'
+					}}
+					color='#55b3d8'
 				/>
 			</View>
-			{checked ? null : (
+			{addressDelivery.privateHome ? null : (
 				<View className='flex-row justify-between'>
 					<InputForm
-						className=''
+						className='my-1'
 						placeholder='№ Кв.'
-						value={text.room}
-						onChangeText={str => setText({ ...text, room: str })}
+						value={addressDelivery.room}
+						onChangeText={str =>
+							setAddressDelivery({
+								...addressDelivery,
+								room: str
+							})
+						}
 					/>
 					<InputForm
+						className='my-1'
 						placeholder='Подъезд'
-						value={text.podyezd}
-						onChangeText={str => setText({ ...text, podyezd: str })}
+						value={addressDelivery.podyezd}
+						onChangeText={str =>
+							setAddressDelivery({
+								...addressDelivery,
+								podyezd: str
+							})
+						}
 					/>
 					<InputForm
+						className='my-1'
 						placeholder='Этаж'
-						value={text.floor}
-						onChangeText={str => setText({ ...text, floor: str })}
+						value={addressDelivery.level}
+						onChangeText={str =>
+							setAddressDelivery({
+								...addressDelivery,
+								level: str
+							})
+						}
 					/>
 				</View>
 			)}
@@ -70,8 +101,13 @@ const DeliveryNote: FC = () => {
 				<InputForm
 					multiline={true}
 					placeholder='Комментарии'
-					value={comment}
-					onChangeText={comment => setComment(comment)}
+					value={addressDelivery.comment}
+					onChangeText={comment =>
+						setAddressDelivery({
+							...addressDelivery,
+							comment: comment
+						})
+					}
 				/>
 			</View>
 			<View>

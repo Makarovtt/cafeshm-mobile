@@ -13,6 +13,13 @@ export const ProductService = {
 		})
 	},
 
+	async getRecommended() {
+		return request<IProduct[]>({
+			url: getProductsUrl('/get-recommended/'),
+			method: 'GET'
+		})
+	},
+
 	async getBySlug(slug: string) {
 		return request<IProduct>({
 			url: getProductsUrl(`/by-slug/${slug}`),

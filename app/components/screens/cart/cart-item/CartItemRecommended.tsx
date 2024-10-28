@@ -4,26 +4,27 @@ import { Image, Pressable, Text, View } from 'react-native'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 import { ICartItem } from '@/types/cart.interface'
+import { IProduct } from '@/types/product.interface'
 
 import { convertPrice } from '@/utils/convertPrice'
 
 import CartActions from './CartActions'
 
 interface ICartItemProps {
-	item: ICartItem
+	item: IProduct
 }
 
-const CartItem: FC<ICartItemProps> = ({ item }) => {
+const CartItemRecommended: FC<ICartItemProps> = ({ item }) => {
 	const { navigate } = useTypedNavigation()
 	return (
 		<View className='flex-row mt-5 bg-white px-2 rounded-lg grow-0 items-center'>
 			<Pressable
-				onPress={() => navigate('Product', { slug: item.product.slug })}
+				onPress={() => navigate('Product', { slug: item.slug })}
 				className='bg-white rounded-xl overflow-hidden py-3 px-3 items-center w-28'
 			>
 				<Image
 					// source={getMediaSource(item.product.image)}
-					source={{ uri: item.product.image }}
+					source={{ uri: item.image }}
 					width={110}
 					height={110}
 					className='rounded-lg'
@@ -36,13 +37,13 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
 					// style={{whitespace=''}}
 					numberOfLines={2}
 				>
-					{item.product.name}
+					{item.name}
 				</Text>
 				<Text className='mt-1'>{convertPrice(item.price)}</Text>
-				<CartActions item={item} />
+				{/* <CartActions item={item} /> */}
 			</View>
 		</View>
 	)
 }
 
-export default CartItem
+export default CartItemRecommended

@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Pressable, Text, View } from 'react-native'
 
 import { validEmail } from '@/components/screens/auth/email.regex'
+import { MyModal } from '@/components/ui/modal/MyModal'
 
 import { IUserDataInput } from '@/types/auth.interface'
 
@@ -50,7 +51,7 @@ const UserEmail: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 						profile.email
 					) : (
 						<Text className='text-red-400 font-light'>
-							Неизвестно
+							Укажите Ваш email
 						</Text>
 					)}
 				</Text>
@@ -64,25 +65,25 @@ const UserEmail: FC<IUserProps> = ({ profile, isRefreshLoding }) => {
 					<Feather name='edit-3' size={18} color='gray' />
 				</Pressable>
 			</View>
-
-			<ProfileModal
-				profile={profile}
-				isModalVisible={isModalVisible}
-				onModalClose={onModalClose}
-				objChange={objChange}
-				setValue={setValue}
-				register={register}
-				rules={{
-					required: 'Поле обязательное',
-					pattern: {
-						value: validEmail,
-						message: 'Введите валидный Email'
-					}
-				}}
-				control={control}
-				handleSubmit={handleSubmit}
-				onSubmit={onSubmit}
-			/>
+			<MyModal isModal={isModalVisible} onClose={onModalClose}>
+				<ProfileModal
+					profile={profile}
+					onClose={onModalClose}
+					objChange={objChange}
+					setValue={setValue}
+					register={register}
+					rules={{
+						required: 'Поле обязательное',
+						pattern: {
+							value: validEmail,
+							message: 'Введите валидный Email'
+						}
+					}}
+					control={control}
+					handleSubmit={handleSubmit}
+					onSubmit={onSubmit}
+				/>
+			</MyModal>
 		</>
 	)
 }

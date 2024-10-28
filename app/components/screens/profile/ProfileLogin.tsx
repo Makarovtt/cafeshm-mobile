@@ -7,6 +7,8 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { AuthService } from '@/services/auth/auth.service'
 
+import { DeleteUser } from './delete-user/DeleteUser'
+import InformationData from './information/InformationData'
 import { useProfile } from './useProfile'
 import AddressData from './userdata/AddressData'
 import BonusData from './userdata/BonusData'
@@ -36,6 +38,8 @@ const ProfileLogin: FC = () => {
 				<BonusData />
 				<CardsData />
 				<AddressData />
+				<InformationData />
+				<DeleteUser profileId={profile?.id} />
 			</View>
 		</ScrollView>
 	)

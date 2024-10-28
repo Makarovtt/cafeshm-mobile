@@ -1,7 +1,7 @@
 import { PressableProps } from 'react-native'
 
 export interface IButton extends PressableProps {
-	activeTab?: 'activeBtn' | 'defaultBtn' | 'deleteBtn' | 'premiertBtn'
+	activeTab?: 'activeBtn' | 'defaultBtn' | 'deleteBtn' | 'waitBtn'
 	className?: string
 }
 
